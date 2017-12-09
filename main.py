@@ -2,9 +2,13 @@ import telebot
 import constants
 from PIL import Image, ImageDraw, ImageFont
 import requests
+import os
 
 bot = telebot.TeleBot(constants.token)
 print(bot.get_me())
+orig_path = os.path.abspath(os.curdir) + "\\assets\\bender.jpg"
+fnt_path = os.path.abspath(os.curdir) + "\\assets\\DejaVuSans.ttf"
+out_path = os.path.abspath(os.curdir) + "\\assets\\out.bmp"
 
 
 def image_compose(price_text):
@@ -15,11 +19,14 @@ def image_compose(price_text):
     # text to show
     text = price_text + "$"
     # get an original image
-    base = Image.open('assets\\bender.jpg').convert('RGBA')
+    # orig_path = os.path.abspath(os.curdir) + "\\assets\\bender.jpg"
+    # fnt_path = os.path.abspath(os.curdir) + "\\assets\\DejaVuSans.ttf"
+    # out_path = os.path.abspath(os.curdir) + "\\assets\\out.bmp"
+    base = Image.open(orig_path).convert('RGBA')
     # make a blank image for the text, initialized to transparent text color
     txt = Image.new('RGBA', base.size, (255, 255, 255, 0))
     # get a font
-    fnt = ImageFont.truetype('assets\\DejaVuSans.ttf', 40)
+    fnt = ImageFont.truetype(fnt_path, 40)
     # get a drawing context
     d = ImageDraw.Draw(txt)
     # draw text
@@ -28,7 +35,7 @@ def image_compose(price_text):
     d.text((offset, 20), text, font=fnt, fill=(0, 0, 0, 250))
     out = Image.alpha_composite(base, txt)
     # out.show() # display the result
-    out.save('assets\\out.bmp')
+    out.save(out_path)
 
 
 def get_bitcoin_price():
@@ -88,7 +95,7 @@ def process(currency, currency_rate, message):
     # make an image with bender and price and save it
     image_compose(currency_rate)
     # open it and send back via telegram
-    with open("assets\\out.bmp", "rb") as photo:
+    with open(out_path, "rb") as photo:
         bot.send_photo(message.chat.id, photo)
     bot.send_message(message.chat.id, '1 {0} = {1}$'.format(currency, currency_rate))
 
