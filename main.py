@@ -6,9 +6,13 @@ import os
 
 bot = telebot.TeleBot(constants.token)
 print(bot.get_me())
-orig_path = os.path.abspath(os.curdir) + "\\assets\\bender.jpg"
-fnt_path = os.path.abspath(os.curdir) + "\\assets\\DejaVuSans.ttf"
-out_path = os.path.abspath(os.curdir) + "\\assets\\out.bmp"
+# orig_path = os.path.abspath(os.curdir) + "\\assets\\bender.jpg"
+# fnt_path = os.path.abspath(os.curdir) + "\\assets\\DejaVuSans.ttf"
+# out_path = os.path.abspath(os.curdir) + "\\assets\\out.bmp"
+
+orig_path = os.path.abspath(os.curdir) + "/assets/bender.jpg"
+fnt_path = os.path.abspath(os.curdir) + "/assets/DejaVuSans.ttf"
+out_path = os.path.abspath(os.curdir) + "/assets/out.bmp"
 
 
 def image_compose(price_text):
