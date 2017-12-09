@@ -101,6 +101,7 @@ def process(currency, currency_rate, message):
     with open(out_path, "rb") as photo:
         bot.send_photo(message.chat.id, photo)
     bot.send_message(message.chat.id, '1 {0} = {1}$'.format(currency, currency_rate))
+    print(message.from_user.username)
 
 
 if __name__ == '__main__':
