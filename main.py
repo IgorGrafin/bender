@@ -1,10 +1,9 @@
 import telebot
-import constants
 from PIL import Image, ImageDraw, ImageFont
 import requests
 import os
 
-bot = telebot.TeleBot(constants.token)
+bot = telebot.TeleBot(os.environ['TELEGRAM_TOKEN'])
 print(bot.get_me())
 # orig_path = os.path.abspath(os.curdir) + "\\assets\\bender.jpg"
 # fnt_path = os.path.abspath(os.curdir) + "\\assets\\DejaVuSans.ttf"
