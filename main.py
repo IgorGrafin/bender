@@ -59,7 +59,7 @@ def get_yobit_price(cur):
     """
     use yobit.net api as URL which contains json of exchange rates
     """
-    url = "https://yobit.net/api/2/" + "cur" + "_usd/ticker"
+    url = "https://yobit.net/api/2/" + cur + "_usd/ticker"
     req = requests.get(url)
     # convert to json
     dic = req.json()
