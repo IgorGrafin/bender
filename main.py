@@ -69,6 +69,20 @@ def get_ethereum_price():
     return str(float(round(ethereum, 2)))
 
 
+def get_ripple_price():
+    """
+    use data.ripple api as URL which contains json of exchange rates
+    """
+    url = "https://data.ripple.com/v2/exchange_rates/XRP/USD+rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B"
+    req = requests.get(url)
+    # convert to json
+    dic = req.json()
+    # recieve last deal of the eth
+    ripple = dic['rate']
+    # it's float, convert it to the string and round to 2 digests
+    return str(float(round(ripple, 2)))
+
+
 # telegram:
 
 
@@ -88,6 +102,13 @@ def handle_btc(message):
 def handle_btc(message):
     currency = 'ETH'
     currency_rate = get_ethereum_price()
+    process(currency, currency_rate, message)
+
+
+@bot.message_handler(commands=['ripple'])
+def handle_btc(message):
+    currency = 'ripple'
+    currency_rate = get_ripple_price()
     process(currency, currency_rate, message)
 
 
