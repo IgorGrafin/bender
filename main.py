@@ -88,7 +88,12 @@ def get_ripple_price():
 
 @bot.message_handler(commands=["start"])
 def handle_start(message):
-    bot.send_message(message.chat.id, '/btc - Bitcoin, /eth - Ethereum')
+    bot.send_message(message.chat.id, '/btc - Bitcoin, /more - more coins!')
+
+
+@bot.message_handler(commands=["more"])
+def handle_start(message):
+    bot.send_message(message.chat.id, '/btc - Bitcoin, /n /eth - Ethereum, /n /ripple - Ripple')
 
 
 @bot.message_handler(commands=['btc'])
