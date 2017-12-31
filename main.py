@@ -55,11 +55,11 @@ def get_bitcoin_price():
     return str(bitcoin)
 
 
-def get_ethereum_price():
+def get_yobit_price(cur):
     """
     use yobit.net api as URL which contains json of exchange rates
     """
-    url = "https://yobit.net/api/2/eth_usd/ticker"
+    url = "https://yobit.net/api/2/" + "cur" + "_usd/ticker"
     req = requests.get(url)
     # convert to json
     dic = req.json()
@@ -93,7 +93,7 @@ def handle_start(message):
 
 @bot.message_handler(commands=["more"])
 def handle_start(message):
-    bot.send_message(message.chat.id, '/btc - Bitcoin, \n /eth - Ethereum, \n /ripple - Ripple')
+    bot.send_message(message.chat.id, '/btc - Bitcoin, \n/bcc - Bitcoin Cash \n/eth - Ethereum, \n/ripple - Ripple')
 
 
 @bot.message_handler(commands=['btc'])
@@ -103,10 +103,17 @@ def handle_btc(message):
     process(currency, currency_rate, message)
 
 
+@bot.message_handler(commands=['bcc'])
+def handle_btc(message):
+    currency = 'BCC'
+    currency_rate = get_yobit_price('bcc')
+    process(currency, currency_rate, message)
+
+
 @bot.message_handler(commands=['eth'])
 def handle_btc(message):
     currency = 'ETH'
-    currency_rate = get_ethereum_price()
+    currency_rate = get_yobit_price('eth')
     process(currency, currency_rate, message)
 
 
