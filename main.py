@@ -93,7 +93,7 @@ def handle_start(message):
 
 @bot.message_handler(commands=["more"])
 def handle_start(message):
-    bot.send_message(message.chat.id, '/btc - Bitcoin, /n /eth - Ethereum, /n /ripple - Ripple')
+    bot.send_message(message.chat.id, '/btc - Bitcoin, \n /eth - Ethereum, \n /ripple - Ripple')
 
 
 @bot.message_handler(commands=['btc'])
