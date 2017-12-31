@@ -78,9 +78,9 @@ def get_ripple_price():
     # convert to json
     dic = req.json()
     # recieve last deal of the eth
-    ripple = int(dic['rate'])
+    ripple = dic['rate']
     # it's float, convert it to the string and round to 2 digests
-    return str(float(round(ripple, 2)))
+    return str(float(ripple))
 
 
 # telegram:
