@@ -5,9 +5,7 @@ import os
 
 bot = telebot.TeleBot(os.environ['TELEGRAM_TOKEN'])
 print(bot.get_me())
-# orig_path = os.path.abspath(os.curdir) + "\\assets\\bender.jpg"
-# fnt_path = os.path.abspath(os.curdir) + "\\assets\\DejaVuSans.ttf"
-# out_path = os.path.abspath(os.curdir) + "\\assets\\out.bmp"
+
 
 orig_path = os.path.abspath(os.curdir) + "/assets/bender.jpg"
 fnt_path = os.path.abspath(os.curdir) + "/assets/DejaVuSans.ttf"
@@ -21,10 +19,7 @@ def image_compose(price_text):
     """
     # text to show
     text = price_text + "$"
-    # get an original image
-    # orig_path = os.path.abspath(os.curdir) + "\\assets\\bender.jpg"
-    # fnt_path = os.path.abspath(os.curdir) + "\\assets\\DejaVuSans.ttf"
-    # out_path = os.path.abspath(os.curdir) + "\\assets\\out.bmp"
+
     base = Image.open(orig_path).convert('RGBA')
     # make a blank image for the text, initialized to transparent text color
     txt = Image.new('RGBA', base.size, (255, 255, 255, 0))
